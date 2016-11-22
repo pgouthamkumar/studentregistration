@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Insert title here</title>
+</h:head>
+<body>
+<h:form>
+<h:panelGroup id="samePanel">
+<h:inputText value="#{student.name}" id="name">
+	<f:ajax event="keypress" render="myoutput" execute="name"></f:ajax>	
+</h:inputText>
+<h:outputLabel id="myoutput">Student Name is::#{student.name}</h:outputLabel>
+<br/>
+<h:outputLabel>State</h:outputLabel>
+<h:selectOneMenu value="#{dataTableBean.curentState}">
+	<f:selectItem itemLabel="Select" itemValue="Select"></f:selectItem>
+	<f:selectItems value="#{dataTableBean.states}"></f:selectItems>
+	<f:ajax event="change" render="districts"></f:ajax>
+</h:selectOneMenu>
+<br/>
+<h:outputLabel>District</h:outputLabel>
+<h:selectOneMenu value="#{dataTableBean.currentDistrict}" id="districts">
+	<f:selectItem itemLabel="Select" itemValue="Select"></f:selectItem>
+	<f:selectItems value="#{dataTableBean.districts[dataTableBean.curentState]}"></f:selectItems>	
+</h:selectOneMenu>
+</h:panelGroup>
+</h:form>
+<h:panelGroup>
+<h:outputLabel value="Testin seperate panel:#{student.name}"></h:outputLabel>
+</h:panelGroup>
+</body>
+</html>
